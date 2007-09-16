@@ -1,17 +1,21 @@
-%define realname   DateTime-Format-Mail
+%define module  DateTime-Format-Mail
+%define name	perl-%{module}
+%define version 0.30
+%define release %mkrel 3
 
-Name:		perl-%{realname}
-Version:    0.30
-Release:    %mkrel 3
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
 License:	Artistic and GPL
 Group:		Development/Perl
 Summary:    Convert between DateTime and RFC2822/822 formats
-Source0:    ftp://ftp.perl.org/pub/CPAN/modules/by-module/DateTime/DateTime-Format-Mail-%{version}.tar.bz2
-Url:		http://search.cpan.org/dist/%{realname}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	perl-devel perl(Test::Pod)
+Url:		http://search.cpan.org/dist/%{module}
+Source:     http://www.cpan.org/modules/by-module/DateTime/%{module}-%{version}.tar.bz2
+BuildRequires:	perl(Test::Pod)
 BuildRequires:	perl(Module::Build)
+BuildRequires:	perl(DateTime)
 BuildArch: noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 RFCs 2822 and 822 specify date formats to be used by email. 
@@ -32,25 +36,24 @@ handling mail dates:
     well as some somewhat more bizarre mistakes. 
 
 %prep
-%setup -q -n DateTime-Format-Mail-%{version} 
+%setup -q -n %{module}-%{version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-%make
+%{__perl} Build.PL installdirs=vendor
+./Build CFLAGS="%{optflags}"
 
 %check
-make test
+./Build test
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall_std
+rm -rf %{buildroot}
+./Build install destdir=%{buildroot}
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc Changes README
 %{perl_vendorlib}/*
 %{_mandir}/man3/*
-
