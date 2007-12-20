@@ -15,6 +15,7 @@ BuildRequires:	perl(Test::Pod)
 BuildRequires:	perl(Module::Build)
 BuildRequires:	perl(DateTime)
 BuildArch: noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 RFCs 2822 and 822 specify date formats to be used by email. 
