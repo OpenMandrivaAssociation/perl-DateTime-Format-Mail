@@ -1,21 +1,21 @@
-%define module  DateTime-Format-Mail
-%define name	perl-%{module}
-%define version 0.30
-%define release %mkrel 5
+%define upstream_name    DateTime-Format-Mail
+%define upstream_version 0.3001
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-License:	Artistic and GPL
-Group:		Development/Perl
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	%mkrel 1
+
 Summary:    Convert between DateTime and RFC2822/822 formats
-Url:		http://search.cpan.org/dist/%{module}
-Source:     http://www.cpan.org/modules/by-module/DateTime/%{module}-%{version}.tar.bz2
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/DateTime/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildRequires:	perl(Test::Pod)
 BuildRequires:	perl(Module::Build)
 BuildRequires:	perl(DateTime)
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 BuildArch: noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 RFCs 2822 and 822 specify date formats to be used by email. 
@@ -36,7 +36,7 @@ handling mail dates:
     well as some somewhat more bizarre mistakes. 
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Build.PL installdirs=vendor
