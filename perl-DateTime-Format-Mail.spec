@@ -3,7 +3,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	%perl_convert_version %{upstream_version}
-Release:	%mkrel 1
+Release:	%mkrel 2
 
 Summary:    Convert between DateTime and RFC2822/822 formats
 License:	GPL+ or Artistic
@@ -57,3 +57,36 @@ rm -rf %{buildroot}
 %doc Changes README
 %{perl_vendorlib}/*
 %{_mandir}/man3/*
+
+
+%changelog
+* Mon Apr 18 2011 Funda Wang <fwang@mandriva.org> 0.300.100-2mdv2011.0
++ Revision: 654911
+- rebuild for updated spec-helper
+
+* Thu Jul 23 2009 Jérôme Quelin <jquelin@mandriva.org> 0.300.100-1mdv2011.0
++ Revision: 398855
+- update to 0.3001
+- using %%perl_convert_version
+- fixed license field
+
+* Wed Jul 23 2008 Thierry Vignaud <tv@mandriva.org> 0.30-5mdv2009.0
++ Revision: 241201
+- rebuild
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+* Sun Sep 16 2007 Guillaume Rousse <guillomovitch@mandriva.org> 0.30-3mdv2008.0
++ Revision: 88426
+- rebuild
+
+  + Michael Scherer <misc@mandriva.org>
+    - fix buildRequires
+    - rebuild
+
+
+* Wed Aug 09 2006 Michael Scherer <misc@mandriva.org> 0.30-1mdv2007.0
+- First Mandriva package
+
