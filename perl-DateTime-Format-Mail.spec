@@ -3,7 +3,7 @@
 
 Name:		perl-%{upstream_name}
 Version:	%perl_convert_version %{upstream_version}
-Release:	%mkrel 2
+Release:	3
 
 Summary:    Convert between DateTime and RFC2822/822 formats
 License:	GPL+ or Artistic
